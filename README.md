@@ -1,6 +1,6 @@
 # Fuel-Optimal Aircraft Allocation in the Brazilian Domestic Air Transportation System
 
-In this repository, we provide an overview of the processed datasets and optimization code behind the fuel-optimal aircraft allocation (FOAA) model, and detail the model's implementation on the domestic Brazilian air transportation system as a case study.
+In this repository, we provide an overview of the processed datasets and optimization code behind the fuel-optimal aircraft allocation (FOAA) model, and detail its implementation on the domestic Brazilian air transportation system as a case study.
 
 ## Fuel-Optimal Aircraft Allocation (FOAA) Model
 
