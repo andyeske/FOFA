@@ -1,1 +1,67 @@
-# Brazil-Fuel-Optimization
+# Fuel-Optimal Aircraft Allocation in the Brazilian Domestic Air Transportation System
+
+In this repository, we provide an overview of the MATLAB (sections 1-6) script utilized to:
+1) Compute the flight delay matrices featured in our work: P (probability), D (delay), E (expected delay), S (Markov transition) and S<sup>n</sup> (stationary distribution).
+2) Modify the code to obtain route-specific flight delay information.
+
+## Fuel-Optimal Aircraft Allocation (FOAA) Framework
+
+### Table of Contents
+
+1. [ Importing the Datasets ](#importing)
+2. [ Building the Flight Delay Matrices ](#building)
+3. [ Markov Chain Computations ](#markov)
+4. [ Querying Route-specific Data ](#querying)
+5. [ Additional Plots ](#additional)
+6. [ Storing the Data ](#storing)
+7. [ Sequence of Flights Delays ](#sequence)
+
+---
+<a name="importing"></a>
+### 1: Importing the Datasets
+
+**Description:** In this section of the code, the two datasets utilized in this work are imported. These are:
+* 'Delay Data.xlsx' (the version utilized in this work can be found on this [online](https://mitprod-my.sharepoint.com/:f:/g/personal/andyeske_mit_edu/El17ZquVEvNIqZzj7RC4w_QBmxD9QLxfptm6CgCZwRF65Q?e=T1Ckal) folder). This datatable contained information about every flight operated in the United States during January of 2023. 
+* 'Tail Number.xlsm' (the version utilized in this work can be found on the [MATLAB Code](https://github.com/andyeske/Flight-delays/tree/main/MATLAB%20Code) folder). This datatable contained information about every tail-number in the US, with the corresponding aircraft type, upto 2022.
+
+Both data sources were extracted from data made publicly available by the United States Bureau of Transportation Statistics. To obtain data corresponding to other months or years:
+* Flight Delay data: to go the BTS Marketing Carrier [On-Time Performance](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGK&QO_fu146_anzr=b0-gvzr). 
+* Tail Number data: go to the BTS Air Carrier Financial [Schedule P-43 Inventory](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=GEH&QO_fu146_anzr=Nv4%20Pn44vr4%20Sv0n0pvny).
+
+**User Action:** Download the MATLAB script (which can be found [here](https://github.com/andyeske/Flight-delays/tree/main/MATLAB%20Code)), the two datatables listed above, and save everything in the same folder. Once in the MATLAB environment, simply click on _Run Section_.
+
+**Lines of Code:** Lines 14 - 29.
+
+([ back to top ](#back_to_top))
+
+---
+<a name="building"></a>
+### 2: Building the Flight Delay Matrices 
+
+**Description:** In this section, the P (probability), D (delay), and E (expected delay) matrices are constructed. Each of these three matrix types will come in three varieties: day of the week (i.e., ```D_day```), airline carrier (i.e., ```D_airline```), and aircraft type (i.e., ```D_airplane```). The explanation for each type of matrix follows below:
+
+  ```
+  - D_day: Average delay on each route, indexed by the day of the week. The 
+    dimension of D_day is 333x339x8, since there are 339 airports in 
+    the network. The 3rd dimension denotes the day of the week.
+    Hence, in D(:,:,i), i = 1 is a Monday, i = 7 is a Sunday, while i = 8 
+    refers to the total average.
+    The rows of D_day represent the origin airport (OA), while the columns
+    denote the destination airport (DA).
+  - D_airline: Average delay on each route, indexed by airline (18 different     
+    carriers considered in this work).
+  - D_airplane: Average delay on each route, indexed by airplane type (41 
+    different types considered in this work).
+  ```
+
+**User Action:** Simply click on _Run Section_.
+
+**Lines of Code:** Lines 30 - 231.
+
+([ back to top ](#back_to_top))
+
+## Authors
+
+Andy Eskenazi, Emilia Ospina Arango, Mina Cezairli <br />
+Department of Aeronautics and Astronautics <br />
+Massachusetts Institute of Technology, 2025 <br />
