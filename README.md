@@ -1,8 +1,8 @@
-# Fuel-Optimal Aircraft Allocation in the Brazilian Domestic Air Transportation System
+# Fuel-Optimal Fleet Assignment in the Brazilian Domestic Air Transportation System
 
-In this repository, we provide an overview of the processed datasets and optimization code behind the fuel-optimal aircraft allocation (FOAA) model, and detail its implementation on the domestic Brazilian air transportation system as a case study.
+In this repository, we provide an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model, and detail its implementation on the domestic Brazilian air transportation system as a case study.
 
-## Fuel-Optimal Aircraft Allocation (FOAA) Model
+## Fuel-Optimal Fleet Assignment (FOFA) Model
 
 ### Table of Contents
 
@@ -41,11 +41,13 @@ In this repository, we provide an overview of the processed datasets and optimiz
 <a name="building"></a>
 ### 2: Optimization Code
 
-**Description:** The FOAA model can be run under two scenarios: on a yearly basis, using ```FOAA_vYB```, or on a daily basis, using ```FOAA_vDB```. The difference between the two, as their name implies, is that the route passenger and aircraft flying time constraints are met either on aggregate for the year, or daily.
+**Description:** The FOFA framework is implemented on the python scrypt ```FOFA_v2.py```. 
+* The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering al eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
+* To avoid making assumptions about what a representative day of operations looks like (e.g., in terms of the average daily number of passengers transported on each route, or average daily fleet utilization), the model is run on a yearly basis, aggregating values for the entirety of 2024. This modeling decision not only has the advantage of incorporating seasonality effects, but also enables building a feasible integer solution region.
 
-**User Action:** To run the code, simply download the desired version, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folders. Both ```FOAA_vYB``` and ```FOAA_vDB``` require the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
+**User Action:** To run the code, simply download ```FOFA_v2.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folders. The python scrypt requires the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
 
-The two FOAA models require minimal set-up. Once they are opened in an appropriate environment, only the 'Step 0' section requires user-editing. In the case of ```FOAA_vYB```, this involves changing the dataset directories and modifiying the sensitivity vector for the load factors.:
+```FOFA_v2.py``` requires minimal user set-up - once open in a python environment, only the 'Step 0' section requires user-editing. Here, the user can appropriately change the dataset directories, select the airline, and modifiy the sensitivity vector for the load factors:
 
   ```
 # ------------------------------------------------ #
@@ -56,25 +58,33 @@ The two FOAA models require minimal set-up. Once they are opened in an appropria
 directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Processed Datasets/'
 
 # --> System-wide Load Factor Sensitivity Vector
-LF_vec = [0.8,0.82,0.84,0.86,0.88,0.9,0.92,0.94,0.96,0.98,1]
+# LF_vec = [0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9]
+LF_vec = [0.83]
+
+# --> Desired Airline
+# Options: 
+# (1): AD - Azul Linhas Aereas Brasileiras 
+#      8 aircraft types, 30.2% market share by ASKs
+
+# (2): G3 - GOL Linhas Aereas
+#      3 aircraft types, 30.5% market share by ASKs
+
+# (3): JJ - LATAM Brasil 
+#      6 aircraft types, 38.7% market share by ASKs
+
+# (4): Combined Brazilian National Airline (19 aircraft types)
+#      19 aircraft types, including aicraft from:
+#      -> 0S - Sideral Linhas Aereas
+#      -> 2F - Azul Conecta
+#      -> 2Z - Voepass
+#      -> 7M - MAP Linhas Aereas
+#      -> E4 - Abaete Aviacao
+
+Option = 1
+
   ```
 
-In the case of ```FOAA_vDB```, user-editing is required to modify the data directory as well as the sensitivity vector for the days in which the optimization would be solved.
-
-  ```
-# ------------------------------------------------ #
-# Step 0: User-editable Parameters
-# ------------------------------------------------ #
-
-# --> Data Directory 
-directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Processed Datasets/'
-
-# --> Days Sensitivity Vector
-# Here, a 0: January 1, 2024, while a 99: April 9, 2024
-days_vec = [0,1,2,3,4,5]
-  ```
-
-In both cases, depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
+Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
 
 ([ back to top ](#back_to_top))
 
