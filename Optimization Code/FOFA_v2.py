@@ -144,30 +144,30 @@ if Airline > 7:
       
 else:
     # Passengers Transported on each Route
-    file_path = open(os.path.join(directory + 'airline_specific_avg_yearly_route_passengers.csv'), 'r'); total_passengers = pd.read_csv(file_path, header=None); 
+    file_path = open(os.path.join(directory + 'airline_specific_yearly_route_passengers.csv'), 'r'); total_passengers = pd.read_csv(file_path, header=None); 
     total_passengers = total_passengers.to_numpy(); 
     total_passengers = np.round(total_passengers[:,Airline]); 
     total_passengers = total_passengers.astype(np.int64)
     l_routes = 1417
     
     # Departures on each Route
-    file_path = open(os.path.join(directory + 'airline_specific_avg_yearly_route_departures.csv'), 'r'); total_departures = pd.read_csv(file_path, header=None); 
+    file_path = open(os.path.join(directory + 'airline_specific_yearly_route_departures.csv'), 'r'); total_departures = pd.read_csv(file_path, header=None); 
     total_departures = total_departures.to_numpy(); total_departures = total_departures[:,Airline]
     total_departures = total_departures.astype(np.int64)
     total_departures = total_departures*(total_passengers > 0)
     
     # Fuel Consumed on each Route
-    file_path = open(os.path.join(directory + 'airline_specific_avg_yearly_fuel_consumed.csv'), 'r'); total_fuel = pd.read_csv(file_path, header=None); 
+    file_path = open(os.path.join(directory + 'airline_specific_yearly_fuel_consumed.csv'), 'r'); total_fuel = pd.read_csv(file_path, header=None); 
     total_fuel = total_fuel.to_numpy(); total_fuel = total_fuel[:,Airline]
     total_fuel = total_fuel*(total_passengers > 0)
     
     # Aircraft Total Flying Time
-    file_path = open(os.path.join(directory + 'airline_specific_avg_yearly_aircraft_flying_times.csv'), 'r'); total_aircraft_flying_times = pd.read_csv(file_path, header=None); 
+    file_path = open(os.path.join(directory + 'airline_specific_yearly_aircraft_flying_times.csv'), 'r'); total_aircraft_flying_times = pd.read_csv(file_path, header=None); 
     total_aircraft_flying_times = total_aircraft_flying_times.to_numpy(); total_aircraft_flying_times = total_aircraft_flying_times[:,Airline]
     l_aircraft = 19
     
     # total RPKs and ASKs
-    file_path = open(os.path.join(directory + 'airline_specific_avg_yearly_metrics.csv'), 'r'); metrics = pd.read_csv(file_path, header=None); 
+    file_path = open(os.path.join(directory + 'airline_specific_yearly_metrics.csv'), 'r'); metrics = pd.read_csv(file_path, header=None); 
     metrics = metrics.to_numpy();
     RPKs = np.sum(metrics[1,Airline])
     ASKs = np.sum(metrics[0,Airline])
