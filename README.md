@@ -40,15 +40,18 @@ In this repository, we provide an overview of the processed datasets and optimiz
   - ```daily_route_passengers.csv```: This 1417-by-366 matrix contains the total number of passengers that were transported along each of the identified 1417 route segments on each day of the year, aggregated for all eight domestic Brazilian airlines.
   -  ```airline_specific_yearly_route_passengers.csv```: This 1417-by-8 matrix contains the total (yearly) number of passengers that were transported on the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
  
-  **Fuel Consumption**:
+* **Fuel Consumption**:
   - ```daily_fuel_consumed.csv```: This 1417-by-366 matrix contains the total fuel consumed (in L) each of the identified 1417 routes, aggregated for all eight domestic Brazilian airlines.
   - ```airline_specific_yearly_fuel_consumed.csv```: This 1417-by-8 matrix contains the total (yearly) fuel consumed (in L) on each of the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
 
 * **Aircraft Utilization**:
   - ```daily_aircraft_flying_times.csv```: This 19-by-366 matrix contains the total fleet-wide flying times (in days) for each of the 19 different aircraft types and each day of 2024 (indexed 1 through 366), aggregated for all eight domestic Brazilian airlines. For example, for January 1st and the A320NEO, (1,1), the fleet flew a cumulative amount of 21.84 days, or 524 hours (i.e., 524/65 = ~8 hours/day).
   - ```airline_specific_yearly_aircraft_flying_times.csv```: This 19-by-8 matrix contains the total (yearly) fleet-wide flying times (in days) for each of the 19 different aircraft types and each of the eight domestic Brazilian airlines.
-   
-* ```metrics.csv```: This 2-by-266 matrix contains the total available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced on a daily basis in the Brazilian Air Transportation System.
+
+* **Traffic Metrics**:
+- ```metrics.csv```: This 2-by-266 matrix contains the available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced on a daily basis in the Brazilian Air Transportation System, aggregated for all eight domestic Brazilian airlines.
+  
+- ```airline_specific_yearly_metrics.csv```: This 2-by-8 matrix contains the total (yearly) available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced by each of the eight domestic Brazilian airlines.
 
 ([ back to top ](#back_to_top))
 
