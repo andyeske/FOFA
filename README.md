@@ -112,13 +112,17 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 ---
 <a name="results"></a>
 ### 3: Results
-A set of representative results obtained from implementing the FOFA model on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) using a range of load factors (LF) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes,:
-* Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF.
-  * Baseline 2024 System-wide Fuel Consumptions (in L):
-  * Key Results: Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between 1% - 4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline. This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
+A set of representative results obtained from implementing the FOFA model on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) using a range of load factors (LF) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
+* **Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF**:
+  * Baseline 2024 System-wide Fuel Consumptions (in L): 0.99 billion (AD); 0.94 billion (G3); 1.36 billion (JJ); and 3.32 billion (RG).
+  * Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between 1% - 4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline.
+  * This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
   
-* Optimized average stage lengths (in km) for each aircraft in the airline's fleet.
-  * Key Results: Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater. Meanwhile, the ASL of less fuel-efficient aircraft, such as the A320CEO, decreased. The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation. The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
+* **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
+  * Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater.
+  * Meanwhile, the ASL of less fuel-efficient aircraft, such as the A320CEO, decreased.
+  * The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation.
+  * The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
 
 ([ back to top ](#back_to_top))
 
