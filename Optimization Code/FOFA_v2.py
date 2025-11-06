@@ -14,6 +14,12 @@
 # implemented separately on the three largest domestic
 # Brazilian airlines, or considering all eight domestic
 # airlines on aggregate as a combined national airline.
+#
+# OUTPUTS:
+# - reduction_vec: vector containing estimated fuel 
+# reduction (in %) compared to 2024 baseline.       
+# - avg_stage_length_vec: optimized average stage lengths
+# (in km) for each aircraft type operated by the chosen airline
 # ------------------------------------------------ #
 
 # ------------------------------------------------ #
@@ -24,19 +30,21 @@
 directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Processed Datasets/'
 
 # --> System-wide Load Factor Sensitivity Vector
-# LF_vec = [0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9]
-LF_vec = [0.83]
+LF_vec = [0.85,0.86,0.87,0.88,0.89,0.9]
 
 # --> Desired Airline
 # Options: 
 # (1): AD - Azul Linhas Aereas Brasileiras 
 #      8 aircraft types, 30.2% market share by ASKs
+#      Minimum LF = 82.2%
 
 # (2): G3 - GOL Linhas Aereas
 #      3 aircraft types, 30.5% market share by ASKs
+#      Minimum LF = 84.7%
 
 # (3): JJ - LATAM Brasil 
 #      6 aircraft types, 38.7% market share by ASKs
+#      Minimum LF = 83.6%
 
 # (4): Combined Brazilian National Airline (19 aircraft types)
 #      19 aircraft types, including aicraft from:
@@ -45,8 +53,9 @@ LF_vec = [0.83]
 #      -> 2Z - Voepass
 #      -> 7M - MAP Linhas Aereas
 #      -> E4 - Abaete Aviacao
+#      Minimum LF = 83.4%
 
-Option = 1
+Option = 4
 
 # ------------------------------------------------ #
 # Step 1: Importing Packages
@@ -72,12 +81,16 @@ from gurobipy import GRB
 # User-Option
 if Option == 1: # Azul Linhas Aereas Brasileiras
     Airline = 4
+    # LF_vec_Azul = [0.822,0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9]; LF_vec = LF_vec_Azul
 elif Option == 2: # GOL Linhas Aereas
     Airline = 6
-elif Option == 2: # LATAM Brasil
+    # LF_vec_Gol = [0.847,0.85,0.86,0.87,0.88,0.89,0.9]; LF_vec = LF_vec_Gol
+elif Option == 3: # LATAM Brasil
     Airline = 7
+    # LF_vec_Latam = [0.836,0.84,0.85,0.86,0.87,0.88,0.89,0.9]; LF_vec = LF_vec_Latam
 else: # Combined Brazilian National Airline
     Airline = 8
+    # LF_vec_Combined = [0.834,0.84,0.85,0.86,0.87,0.88,0.89,0.9]; LF_vec = LF_vec_Combined
     
 # Aircraft Types
 aircraft = ['A20N','A21N','A319','A320','A321','A332','A339','AT45','AT75','AT76','B38M','B733','B735','B737','B738','B789','C208','E195','E295']
@@ -99,7 +112,6 @@ file_path = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Proc
 aircraft_fuel = aircraft_statistics['Fuel Burn (L/km)'].to_numpy(); aircraft_fuel = aircraft_fuel[0:19]; aircraft_fuel = np.vstack(aircraft_fuel).astype(np.float64); aircraft_fuel = np.round(aircraft_fuel[:,0],3)
 aircraft_seats = aircraft_statistics['Average Seats'].to_numpy(); aircraft_seats = aircraft_seats[0:19]; aircraft_seats = np.vstack(aircraft_seats).astype(np.int64); aircraft_seats = np.round(aircraft_seats[:,0],3)
 aircraft_range = aircraft_statistics['Range'].to_numpy(); aircraft_range = aircraft_range[0:19]; aircraft_range = np.vstack(aircraft_range).astype(np.int64); aircraft_range = np.round(aircraft_range[:,0],3)
-aircraft_stage_length = aircraft_statistics['Average Stage Length (km)'].to_numpy(); aircraft_stage_length = aircraft_stage_length[0:19]
 aircraft_runways = aircraft_statistics['Take-off Length (m)'].to_numpy(); aircraft_runways = aircraft_runways[0:19]
 
 # Airport Index Vector
@@ -179,6 +191,7 @@ else:
 
 # Load Factor Sensitivity Analysis
 reduction_vec = np.zeros([len(LF_vec),1])
+avg_stage_length_vec = np.zeros([l_aircraft+1,len(LF_vec)])
 LF_in = 0
 
 # Starting the sensitivity iterations, proving multiple load factors
@@ -253,6 +266,10 @@ for target_LF in LF_vec:
     original_fuel_consumption = np.sum(total_fuel)
     new_fuel_consumption = np.sum(x_solution@aircraft_fuel*route_distance)
     reduction_vec[LF_in] = 100*(new_fuel_consumption - original_fuel_consumption)/original_fuel_consumption
+    
+    # Calculating the new average stage length
+    avg_stage_length_vec[0:19,LF_in] = np.transpose(np.transpose(route_distance)@x_solution/np.sum(x_solution,0))
+    avg_stage_length_vec[19,LF_in] = np.sum(np.transpose(route_distance)@x_solution)/np.sum(x_solution)
     
     # Updating the LF index
     LF_in = LF_in + 1
