@@ -77,30 +77,32 @@ In this repository, we provide an overview of the processed datasets and optimiz
 directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Processed Datasets/'
 
 # --> System-wide Load Factor Sensitivity Vector
-# LF_vec = [0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9]
-LF_vec = [0.83]
+LF_vec = [0.85,0.86,0.87,0.88,0.89,0.9]
 
 # --> Desired Airline
 # Options: 
 # (1): AD - Azul Linhas Aereas Brasileiras 
 #      8 aircraft types, 30.2% market share by ASKs
+#      Minimum LF = 82.2%
 
 # (2): G3 - GOL Linhas Aereas
 #      3 aircraft types, 30.5% market share by ASKs
+#      Minimum LF = 84.7%
 
 # (3): JJ - LATAM Brasil 
 #      6 aircraft types, 38.7% market share by ASKs
+#      Minimum LF = 83.6%
 
-# (4): RG - Combined Brazilian National Airline (19 aircraft types)
+# (4): Combined Brazilian National Airline (19 aircraft types)
 #      19 aircraft types, including aicraft from:
 #      -> 0S - Sideral Linhas Aereas
 #      -> 2F - Azul Conecta
 #      -> 2Z - Voepass
 #      -> 7M - MAP Linhas Aereas
 #      -> E4 - Abaete Aviacao
+#      Minimum LF = 83.4%
 
-Option = 1
-
+Option = 4
   ```
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
@@ -111,9 +113,12 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 <a name="results"></a>
 ### 3: Results
 A set of representative results obtained from implementing the FOFA model on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) using a range of load factors (LF) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes,:
-* Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF. Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between 1% - 4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline. This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
+* Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF.
+  * Baseline 2024 System-wide Fuel Consumptions (in L):
+  * Key Results: Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between 1% - 4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline. This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
   
-* Optimized average stage lengths (in km) for each aircraft in the airline's fleet. Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater. Meanwhile, the ASL of less fuel-efficient aircraft, such as the A320CEO, decreased. The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation. The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
+* Optimized average stage lengths (in km) for each aircraft in the airline's fleet.
+  * Key Results: Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater. Meanwhile, the ASL of less fuel-efficient aircraft, such as the A320CEO, decreased. The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation. The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
 
 ([ back to top ](#back_to_top))
 
