@@ -119,7 +119,7 @@ A set of representative results obtained from implementing the FOFA model on Azu
   * This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
 
 <p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/LF_Plot.jpg" width="500"> 
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/LF_Plot.jpg" width="1000"> 
 
 **Figure:** _System-wide fuel consumption reductions (in %) with respect to the baseline as a function of the LF_.
 </p>
@@ -131,7 +131,7 @@ A set of representative results obtained from implementing the FOFA model on Azu
   * The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
 
 <p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL_Plot.jpg" width="500"> 
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL_Plot.jpg" width="1000"> 
 
 **Figure:** _Optimized ASLs for each aircraft in the airline's fleet_.
 </p>
