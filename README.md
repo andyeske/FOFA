@@ -61,7 +61,7 @@ In this repository, we provide an overview of the processed datasets and optimiz
 ### 2: Optimization Code
 
 **Description:** The FOFA framework is implemented on the python scrypt ```FOFA_v2.py```. 
-* The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering al eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
+* The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering all eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
 * To avoid making assumptions about what a representative day of operations looks like (e.g., in terms of the average daily number of passengers transported on each route, or average daily fleet utilization), the model is run on a yearly basis, aggregating values for the entirety of 2024. This modeling decision not only has the advantage of incorporating seasonality effects, but also enables building a feasible integer solution region.
 
 **User Action:** To run the code, simply download ```FOFA_v2.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folders. The python scrypt requires the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
@@ -115,7 +115,7 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 A set of representative results obtained from implementing the FOFA model on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) using a range of load factors (LF) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
 * **Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF**:
   * Baseline 2024 System-wide Fuel Consumptions (in L): 0.99 billion (AD); 0.94 billion (G3); 1.36 billion (JJ); and 3.32 billion (RG).
-  * Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between 1% - 4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline.
+  * Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between ~1% - ~4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline.
   * This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
 
 <p align="left">
@@ -126,7 +126,7 @@ A set of representative results obtained from implementing the FOFA model on Azu
   
 * **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
   * Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater.
-  * Meanwhile, the ASL of less fuel-efficient aircraft, such as the A320CEO, decreased.
+  * Meanwhile, the ASL of the less fuel-efficient aircraft, such as the A320CEO, decreased.
   * The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation.
   * The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
 
