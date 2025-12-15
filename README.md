@@ -19,7 +19,7 @@ In this repository, we provide an overview of the processed datasets and optimiz
 * **Aircraft Operational and Performance Statistics**:
   - ```Aircraft Statistics.xlsx```: This table contains ten operational performance characteristics for 19 different aircraft types that operated domestically in Brazil during 2024.
     
-  - Operational performance characteristics include: (1) fleet-wide count; (2) fleet-wide yearly block times (in days); (3) fleet-wide productivity (in ASKs/day); (4) fuel burn (in L/hr); (5) fuel burn (in L/km); (6) fuel burn (in L/RPK); (7) average number of seats; (8) average stage length (in km); (9) range (in km); and (10) take-off runway length (in m).
+  - Operational performance characteristics include: (1) fleet-wide count; (2) fleet-wide yearly flying times (in days); (3) fleet-wide productivity (in ASKs/day); (4) fuel burn (in L/hr); (5) fuel burn (in L/km); (6) fuel burn (in L/RPK); (7) average number of seats; (8) average stage length (in km); (9) range (in km); and (10) take-off runway length (in m).
     
   - Aircraft types include: A320NEO; A321NEO; A319CEO; A320CEO; A321CEO; A330-200; A330-900; ATR42-500; ATR72-500; ATR72-600; B737-8; B737-800; B737-500; B737-700; B737-800; B787-9; C208; E195; and E195-E2.
   
