@@ -140,8 +140,8 @@ A set of representative results obtained from implementing the FOFA model on Azu
 
 ## Authors
 
-Andy Eskenazi$_{1}$, Emilia Ospina Arango$_{2}$, Mina Cezairli$_{1}$, Catherine Ning$_{3}$ <br />
-<sup>1<sup>Department of Aeronautics and Astronautics <br />
-<sup>2<sup>System Design and Management <br />
-<sup>3<sup>Operations Research Center <br />
+Andy Eskenazi<sup>1</sup>, Emilia Ospina Arango<sup>2</sup>, Mina Cezairli<sup>1</sup>, Catherine Ning<sup>3</sup> <br />
+<sup>1</sup>>Department of Aeronautics and Astronautics <br />
+<sup>2</sup>System Design and Management <br />
+<sup>3</sup>Operations Research Center <br />
 Massachusetts Institute of Technology, 2025 <br />
