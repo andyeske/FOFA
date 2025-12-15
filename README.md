@@ -31,7 +31,7 @@ In this repository, we provide an overview of the processed datasets and optimiz
     
   - ```airline_specific_yearly_route_departures.csv```: This 1417-by-8 matrix contains the total (yearly) number of departures on the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
   
-  - ```route_distances.csv```: This 1417-by-1 matrix contains the average distance (in km) for the identified 1417 route segments.
+  - ```route_distances.csv```: This 1417-by-1 matrix contains the average distance (in km) for each of the identified 1417 route segments.
     
   - ```route_flight_times.csv```: This 1417-by-1 matrix contains the average flight time (in days) for each of the identified 1417 route segments. For example, for route #1, the average flight time is 0.028 days, or ~40 minutes.
  
