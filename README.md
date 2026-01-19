@@ -1,6 +1,6 @@
 # Fuel-Optimal Fleet Assignment in the Brazilian Domestic Air Transportation System
 
-In this repository, we provide an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model, and detail its implementation on the domestic Brazilian air transportation system as a case study.
+This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model, and details its implementation on the domestic Brazilian air transportation system.
 
 ## Fuel-Optimal Fleet Assignment (FOFA) Model
 
@@ -27,31 +27,26 @@ In this repository, we provide an overview of the processed datasets and optimiz
   - ```Airport Codes.xlsm```: This table contains the ICAO and IATA code, as well as latitude, longitude, and primary runway length (in m) of 169 airports in Brazil (indexed 1 through 169). For example, for Rio de Janeiro Galeao, Index: 34, ICAO Code: SBGL; IATA Code: GIG; Latitute: -22.81; Longitude: -43.25; and Primary Runway Length: 4000m.
 
 * **Route Characteristics**:
-  - ```daily_route_departures.csv```: This 1417-by-366 matrix contains the number of departures on 1417 origin-destination route segments (indexed 1 through 1417) in the Brazilian air transportation system, for each of the 366 days of 2024, aggregated for all eight domestic Brazilian airlines. These 1417 route segments had at least one departure during 2024.
-    
-  - ```airline_specific_yearly_route_departures.csv```: This 1417-by-8 matrix contains the total (yearly) number of departures on the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
+  - ```baseline_fleet_assignment.xlsx```: This excel document
   
-  - ```route_distances.csv```: This 1417-by-1 matrix contains the average distance (in km) for each of the identified 1417 route segments.
+  - ```route_distances.csv```: This 1413-by-1 matrix contains the average distance (in km) for each of the identified 1413 route segments.
     
-  - ```route_flight_times.csv```: This 1417-by-1 matrix contains the average flight time (in days) for each of the identified 1417 route segments. For example, for route #1, the average flight time is 0.028 days, or ~40 minutes.
+  - ```route_flight_times.csv```: This 1413-by-1 matrix contains the average flight time (in days) for each of the identified 1413 route segments. For example, for route #1, the average flight time is 0.028 days, or ~40 minutes.
  
-  - ```route_airport_index.csv```: This 1417-by-2 matrix contains the mapping between each of the idenfied 1417 route segments, and their respective origin and destination airports (indexed 1 through 169). For example, route #1 operated between airport #1 (ARX) and airport #33 (FOR).
+  - ```route_airport_index.csv```: This 1413-by-2 matrix contains the mapping between each of the idenfied 1413 route segments, and their respective origin and destination airports (indexed 1 through 169). For example, route #1 operated between airport #1 (ARX) and airport #33 (FOR).
+ 
+  -   ```route_airport_index.xlsx```: This 1413-by-2 matrix contains the mapping between each of the idenfied 1413 route segments, and their respective origin and destination airports (indexed 1 through 169). For example, route #1 operated between airport #1 (ARX) and airport #33 (FOR).
 
 * **Route Passengers**:
-  - ```daily_route_passengers.csv```: This 1417-by-366 matrix contains the total number of passengers that were transported along each of the identified 1417 route segments on each day of the year, aggregated for all eight domestic Brazilian airlines.
-  -  ```airline_specific_yearly_route_passengers.csv```: This 1417-by-8 matrix contains the total (yearly) number of passengers that were transported on the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
+  -  ```airline_specific_yearly_route_passengers.csv```: This 1413-by-8 matrix contains the total (yearly) number of passengers that were transported on the identified 1413 route segments, for each of the eight domestic Brazilian airlines.
  
 * **Fuel Consumption**:
-  - ```daily_fuel_consumed.csv```: This 1417-by-366 matrix contains the total fuel consumed (in L) each of the identified 1417 routes, aggregated for all eight domestic Brazilian airlines.
-  - ```airline_specific_yearly_fuel_consumed.csv```: This 1417-by-8 matrix contains the total (yearly) fuel consumed (in L) on each of the identified 1417 route segments, for each of the eight domestic Brazilian airlines.
+  - ```airline_specific_yearly_fuel_consumed.csv```: This 1413-by-8 matrix contains the total (yearly) fuel consumed (in L) on each of the identified 1413 route segments, for each of the eight domestic Brazilian airlines.
 
 * **Aircraft Utilization**:
-  - ```daily_aircraft_flying_times.csv```: This 19-by-366 matrix contains the total fleet-wide flying times (in days) for each of the 19 different aircraft types and each day of 2024 (indexed 1 through 366), aggregated for all eight domestic Brazilian airlines. For example, for January 1st and the A320NEO, (1,1), the fleet flew a cumulative amount of 21.84 days, or 524 hours (i.e., 524/65 = ~8 hours/day).
-  - ```airline_specific_yearly_aircraft_flying_times.csv```: This 19-by-8 matrix contains the total (yearly) fleet-wide flying times (in days) for each of the 19 different aircraft types and each of the eight domestic Brazilian airlines.
+  - ```airline_specific_yearly_aircraft_flying_times.csv```: This 19-by-8 matrix contains the total (yearly) fleet-wide flying times (in days) for each of the 19 different aircraft types and each of the eight domestic Brazilian airlines. For example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days (i.e., [3050.6 days * 24 hours] / [20 planes * 365 days] = ~6.7 hours/day).
 
 * **Traffic Metrics**:
-  - ```metrics.csv```: This 2-by-266 matrix contains the available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced on a daily basis in the Brazilian Air Transportation System, aggregated for all eight domestic Brazilian airlines.
-  
   - ```airline_specific_yearly_metrics.csv```: This 2-by-8 matrix contains the total (yearly) available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced by each of the eight domestic Brazilian airlines.
 
 ([ back to top ](#back_to_top))
