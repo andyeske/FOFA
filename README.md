@@ -19,9 +19,9 @@ This repository provides an overview of the processed datasets and optimization 
 * **Aircraft Operational and Performance Statistics**:
   - ```Aircraft Statistics.xlsx```: This table contains ten operational performance characteristics for 19 different aircraft types that operated domestically in Brazil during 2024.
     
-  - Operational performance characteristics include: (1) fleet-wide count; (2) fleet-wide yearly flying times (in days); (3) fleet-wide productivity (in ASKs/day); (4) fuel burn (in L/hr); (5) fuel burn (in L/km); (6) fuel burn (in L/RPK); (7) average number of seats; (8) average stage length (in km); (9) range (in km); and (10) take-off runway length (in m).
+    - Operational performance characteristics include: (1) fleet-wide count; (2) fleet-wide yearly flying times (in days); (3) fleet-wide productivity (in ASKs/day); (4) fuel burn (in L/hr); (5) fuel burn (in L/km); (6) fuel burn (in L/RPK); (7) average number of seats; (8) average stage length (in km); (9) range (in km); and (10) take-off runway length (in m).
     
-  - Aircraft types include: A320NEO; A321NEO; A319CEO; A320CEO; A321CEO; A330-200; A330-900; ATR42-500; ATR72-500; ATR72-600; B737-8; B737-800; B737-500; B737-700; B737-800; B787-9; C208; E195; and E195-E2.
+    - Aircraft types include: A320NEO; A321NEO; A319CEO; A320CEO; A321CEO; A330-200; A330-900; ATR42-500; ATR72-500; ATR72-600; B737-8; B737-800; B737-500; B737-700; B737-800; B787-9; C208; E195; and E195-E2.
   
 * **Airport Characteristics**:
   - ```Airport Codes.xlsm```: This table contains the ICAO and IATA code, as well as latitude, longitude, and primary runway length (in m) of 169 airports in Brazil (indexed 1 through 169). For example, for Rio de Janeiro Galeao, Index: 34, ICAO Code: SBGL; IATA Code: GIG; Latitute: -22.81; Longitude: -43.25; and Primary Runway Length: 4000m.
