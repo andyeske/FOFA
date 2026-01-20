@@ -1,6 +1,6 @@
 # Fuel-Optimal Fleet Assignment in the Brazilian Domestic Air Transportation System
 
-This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model, and details its implementation on the domestic Brazilian air transportation system.
+This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model. The model is implemented on the domestic Brazilian air transportation system.
 
 ## Fuel-Optimal Fleet Assignment (FOFA) Model
 
@@ -59,9 +59,9 @@ This repository provides an overview of the processed datasets and optimization 
 * The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering all eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
 * To avoid making assumptions about what a representative day of operations looks like (e.g., in terms of the average daily number of passengers transported on each route, or average daily fleet utilization), the model is run on a yearly basis, aggregating values for the entirety of 2024. This modeling decision not only has the advantage of incorporating seasonality effects, but also enables building a feasible integer solution region.
 
-**User Action:** To run the code, simply download ```FOFA_v2.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folders. The python scrypt requires the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
+**User Action:** To run the code, simply download ```FOFA_v3.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folder. The python scrypt requires the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
 
-```FOFA_v2.py``` requires minimal user set-up - once open in a python environment, only the 'Step 0' section requires user-editing. Here, the user can appropriately change the dataset directories, select the airline, and modifiy the sensitivity vector for the load factors:
+```FOFA_v3.py``` requires minimal user set-up - once open in a python environment, only the 'Step 0' section requires user-editing. Here, the user can appropriately change the dataset directories, select the airline, and modifiy the system-wide sensitivity parameters:
 
   ```
 # ------------------------------------------------ #
@@ -71,10 +71,7 @@ This repository provides an overview of the processed datasets and optimization 
 # --> Data Directory 
 directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Processed Datasets/'
 
-# --> System-wide Load Factor Sensitivity Vector
-LF_vec = [0.85,0.86,0.87,0.88,0.89,0.9]
-
-# --> Desired Airline
+# --> Airline
 # Options: 
 # (1): AD - Azul Linhas Aereas Brasileiras 
 #      8 aircraft types, 30.2% market share by ASKs
@@ -88,7 +85,7 @@ LF_vec = [0.85,0.86,0.87,0.88,0.89,0.9]
 #      6 aircraft types, 38.7% market share by ASKs
 #      Minimum LF = 83.6%
 
-# (4): Combined Brazilian National Airline (19 aircraft types)
+# (4): RG - Combined Brazilian National Airline (19 aircraft types)
 #      19 aircraft types, including aicraft from:
 #      -> 0S - Sideral Linhas Aereas
 #      -> 2F - Azul Conecta
@@ -97,8 +94,20 @@ LF_vec = [0.85,0.86,0.87,0.88,0.89,0.9]
 #      -> E4 - Abaete Aviacao
 #      Minimum LF = 83.4%
 
-Option = 4
+Option = 3
+
+# --> System-wide Sensitivity Parameters
+# Establish a maximum load factor (max_LF)
+max_LF = 85
+
+# Enforce a maximum aircraft utilization percentage (max_uti)
+max_uti = 101
+
+# Fix the baseline fleet assignment on certain routes (fixed_routes)
+fixed_routes = []
   ```
+
+Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft utilization percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether the baseline fleet assignment is employed on certain routes). In the example above, ```max_LF = 85``` and  ```max_uti = 101``` indicate that the optimized fleet assignment will result in a network with at most a 85% load factor and an aircraft utilization of 101% over the baseline.
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
 
