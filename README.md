@@ -94,11 +94,11 @@ directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Proc
 #      -> E4 - Abaete Aviacao
 #      Minimum LF = 83.4%
 
-Option = 3
+Option = 4
 
 # --> System-wide Sensitivity Parameters
 # Establish a maximum load factor (max_LF)
-max_LF = 85
+max_LF = 83.4
 
 # Enforce a maximum aircraft utilization percentage (max_uti)
 max_uti = 101
@@ -108,7 +108,7 @@ fixed_routes = []
   ```
 
 Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft utilization percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether to directly fix the baseline fleet assignment on certain route segments). In the example above:
-* ```max_LF = 85``` and  ```max_uti = 101``` constrain the optimized fleet assignment to a network with at most a 85% load factor and an aircraft utilization of 101% over the baseline.
+* ```max_LF = 83.4``` and  ```max_uti = 101``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and an aircraft utilization of 101% over the baseline.
 * Meanwhile, ```fixed_routes = []``` indicates that no route is fixed. While FOFA can enforce specific fleet assignments on several route segments, this situation can also make the problem unfeasible.
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
@@ -118,55 +118,79 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 ---
 <a name="results"></a>
 ### 3: Results
-Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on LATAM Brasil, using ```max_LF = 85```, ```max_uti = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
+Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_uti = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
 
   ```
 ---------------- Problem Statistics -----------------
 
 ---------------------- Inputs -----------------------
---> Airline: LATAM Brasil(JJ)
---> Maximum System-wide Load Factor (LF): 85%
+--> Airline: Combined Brazilian National Airline (RG)
+--> Maximum System-wide Load Factor (LF): 83.4%
 --> Maximum Aircraft Utilization: 101%
 --> Fixed Route: []
 
 ---------------------- Outputs ----------------------
 --> Airline Statistics:
-----> Number of Routes: 430
-----> Number of Airports: 57
-----> Number of Aircraft Types: 6
-----> Number of Passengers: 35.3 million
-----> Revenue Passenger Miles (RPKs): 39.58 billion
-----> Revenue Passenger Miles (ASKs): 47.33 billion
-----> Baseline Load Factor (LF): 83.6%
+----> Number of Routes: 1413
+----> Number of Airports: 166
+----> Number of Aircraft Types: 19
+----> Number of Passengers: 94.81 million
+----> Revenue Passenger Miles (RPKs): 101.93 billion
+----> Revenue Passenger Miles (ASKs): 122.19 billion
+----> Baseline Load Factor (LF): 83.4%
 
 --> Fuel Consumption (FC):
-----> Optimized FC (L): 1327 million L (Baseline FC (L): 1357 million L)
-----> FC Reduction (%): -2.26%
+----> Optimized FC (L): 3231 million L (Baseline FC (L): 3323 million L)
+----> FC Reduction (%): -2.77%
 
 --> Average Stage Lengths (ASL):
-----> A320NEO Optimized ASL (km): 2426.0 km (Baseline ASL (km): 1079.0 km)
-----> A321NEO Optimized ASL (km): 2251.0 km (Baseline ASL (km): 1400.0 km)
-----> A319CEO Optimized ASL (km): 475.0 km (Baseline ASL (km): 753.0 km)
-----> A320CEO Optimized ASL (km): 1309.0 km (Baseline ASL (km): 1012.0 km)
-----> A321CEO Optimized ASL (km): 690.0 km (Baseline ASL (km): 1369.0 km)
-----> B787-9 Optimized ASL (km): 328.0 km (Baseline ASL (km): 2347.0 km)
-----> Airline Average Optimized ASL (km): 1070.0 km (Baseline ASL (km): 1071.0 km)
+----> A320NEO Optimized ASL (km): 1794 km (Baseline ASL (km): 1293 km)
+----> A321NEO Optimized ASL (km): 2463 km (Baseline ASL (km): 1604 km)
+----> A319CEO Optimized ASL (km): 375 km (Baseline ASL (km): 753 km)
+----> A320CEO Optimized ASL (km): 601 km (Baseline ASL (km): 1012 km)
+----> A321CEO Optimized ASL (km): 1130 km (Baseline ASL (km): 1369 km)
+----> A330-900 Optimized ASL (km): 931 km (Baseline ASL (km): 1970 km)
+----> ATR42-500 Optimized ASL (km): 397 km (Baseline ASL (km): 548 km)
+----> ATR72-500 Optimized ASL (km): 415 km (Baseline ASL (km): 447 km)
+----> ATR72-600 Optimized ASL (km): 554 km (Baseline ASL (km): 391 km)
+----> B737-8 Optimized ASL (km): 2187 km (Baseline ASL (km): 1199 km)
+----> B737-300 Optimized ASL (km): 825 km (Baseline ASL (km): 1587 km)
+----> B737-500 Optimized ASL (km): 540 km (Baseline ASL (km): 1051 km)
+----> B737-700 Optimized ASL (km): 390 km (Baseline ASL (km): 704 km)
+----> B737-800 Optimized ASL (km): 1114 km (Baseline ASL (km): 1013 km)
+----> B787-9 Optimized ASL (km): 836 km (Baseline ASL (km): 2347 km)
+----> C208 Optimized ASL (km): 431 km (Baseline ASL (km): 328 km)
+----> E195 Optimized ASL (km): 316 km (Baseline ASL (km): 550 km)
+----> E195-E2 Optimized ASL (km): 823 km (Baseline ASL (km): 775 km)
+----> Airline Average Optimized ASL (km): 949 km (Baseline ASL (km): 950 km)
 
 -------------------- Optimization --------------------
 --> Overall Statistics:
-----> Number of Variables: 2580
-----> Number of Constraints: 1470
-----> Runtime (s): 1.54s
-----> Optimality Gap (%): 0.03%
+----> Number of Variables: 26847
+----> Number of Constraints: 3929
+----> Runtime (s): 140.36s
+----> Optimality Gap (%): 0.1%
 
 --> Key Constraints Slack Percentage:
-----> LF Slack (%): 0.83%
-----> A320NEO Utilization Slack (%): 0.01%
-----> A321NEO Utilization Slack (%): 0.01%
-----> A319CEO Utilization Slack (%): 0.0%
-----> A320CEO Utilization Slack (%): 0.1%
-----> A321CEO Utilization Slack (%): 0.0%
-----> B787-9 Utilization Slack (%): 0.1%
+----> LF Slack (%): 0.0%
+----> A320NEO Utilization Slack (%): 0.0%
+----> A321NEO Utilization Slack (%): 0.0%
+----> A319CEO Utilization Slack (%): 0.04%
+----> A320CEO Utilization Slack (%): 0.0%
+----> A321CEO Utilization Slack (%): -0.0%
+----> A330-900 Utilization Slack (%): 0.28%
+----> ATR42-500 Utilization Slack (%): 0.16%
+----> ATR72-500 Utilization Slack (%): 0.0%
+----> ATR72-600 Utilization Slack (%): 0.0%
+----> B737-8 Utilization Slack (%): 0.0%
+----> B737-300 Utilization Slack (%): 0.2%
+----> B737-500 Utilization Slack (%): 59.54%
+----> B737-700 Utilization Slack (%): 0.0%
+----> B737-800 Utilization Slack (%): 0.0%
+----> B787-9 Utilization Slack (%): 0.01%
+----> C208 Utilization Slack (%): 0.02%
+----> E195 Utilization Slack (%): 15.74%
+----> E195-E2 Utilization Slack (%): 0.0%
 
 -----------------------------------------------------
   ```
