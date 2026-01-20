@@ -51,11 +51,11 @@ directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Proc
 #      -> E4 - Abaete Aviacao
 #      Minimum LF = 83.4%
 
-Option = 3
+Option = 4
 
 # --> System-wide Sensitivity Parameters
 # Establish a maximum load factor (max_LF)
-max_LF = 85
+max_LF = 83.4
 
 # Enforce a maximum aircraft utilization percentage (max_uti)
 max_uti = 101
@@ -307,7 +307,7 @@ print("")
 print("---------------- Problem Statistics -----------------")
 print("")
 print("---------------------- Inputs -----------------------")
-print("--> Airline: " + name + "(" + code + ")")
+print("--> Airline: " + name + " (" + code + ")")
 print("--> Maximum System-wide Load Factor (LF): " + str(max_LF) + "%")
 print("--> Maximum Aircraft Utilization: " + str(max_uti) + "%")
 print("--> Fixed Route: " + str(fixed_routes))
@@ -329,7 +329,7 @@ print("")
 print("--> Average Stage Lengths (ASL):")
 for k in range(0,20):
     if np.isnan(avg_stage_length_vec[k]) == 0:
-        print("----> " + aircraft_names[k] + " Optimized ASL (km): " + str(np.round(avg_stage_length_vec[k,0]*1000)) + " km " + "(Baseline ASL (km): " + str(np.round(avg_stage_length_vec_baseline[k,0]*1000)) + " km)")
+        print("----> " + aircraft_names[k] + " Optimized ASL (km): " + str(int(np.round(avg_stage_length_vec[k,0]*1000))) + " km " + "(Baseline ASL (km): " + str(int(np.round(avg_stage_length_vec_baseline[k,0]*1000))) + " km)")
 print("")
 print("-------------------- Optimization --------------------")        
 print("--> Overall Statistics:")
