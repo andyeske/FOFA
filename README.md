@@ -103,11 +103,13 @@ max_LF = 85
 # Enforce a maximum aircraft utilization percentage (max_uti)
 max_uti = 101
 
-# Fix the baseline fleet assignment on certain routes (fixed_routes)
+# Fix the baseline fleet assignment on certain route segments (fixed_routes)
 fixed_routes = []
   ```
 
-Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft utilization percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether the baseline fleet assignment is employed on certain routes). In the example above, ```max_LF = 85``` and  ```max_uti = 101``` indicate that the optimized fleet assignment will result in a network with at most a 85% load factor and an aircraft utilization of 101% over the baseline.
+Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft utilization percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether to directly fix the baseline fleet assignment on certain route segments). In the example above:
+* ```max_LF = 85``` and  ```max_uti = 101``` constrain the optimized fleet assignment to a network with at most a 85% load factor and an aircraft utilization of 101% over the baseline.
+* Meanwhile, ```fixed_routes = []``` indicates that no route is fixed. While FOFA can enforce specific fleet assignments on several route segments, this situation can also make the problem unfeasible.
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
 
@@ -116,9 +118,76 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 ---
 <a name="results"></a>
 ### 3: Results
-A set of representative results obtained from implementing the FOFA model on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) using a range of load factors (LF) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
-* **Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for each LF**:
-  * Baseline 2024 System-wide Fuel Consumptions (in L): 0.99 billion (AD); 0.94 billion (G3); 1.36 billion (JJ); and 3.32 billion (RG).
+Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on LATAM Brasil, using ```max_LF = 85```, ```max_uti = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
+
+  ```
+---------------- Problem Statistics -----------------
+
+---------------------- Inputs -----------------------
+--> Airline: LATAM Brasil(JJ)
+--> Maximum System-wide Load Factor (LF): 85%
+--> Maximum Aircraft Utilization: 101%
+--> Fixed Route: []
+
+---------------------- Outputs ----------------------
+--> Airline Statistics:
+----> Number of Routes: 430
+----> Number of Airports: 57
+----> Number of Aircraft Types: 6
+----> Number of Passengers: 35.3 million
+----> Revenue Passenger Miles (RPKs): 39.58 billion
+----> Revenue Passenger Miles (ASKs): 47.33 billion
+----> Baseline Load Factor (LF): 83.6%
+
+--> Fuel Consumption (FC):
+----> Optimized FC (L): 1327 million L (Baseline FC (L): 1357 million L)
+----> FC Reduction (%): -2.26%
+
+--> Average Stage Lengths (ASL):
+----> A320NEO Optimized ASL (km): 2426.0 km (Baseline ASL (km): 1079.0 km)
+----> A321NEO Optimized ASL (km): 2251.0 km (Baseline ASL (km): 1400.0 km)
+----> A319CEO Optimized ASL (km): 475.0 km (Baseline ASL (km): 753.0 km)
+----> A320CEO Optimized ASL (km): 1309.0 km (Baseline ASL (km): 1012.0 km)
+----> A321CEO Optimized ASL (km): 690.0 km (Baseline ASL (km): 1369.0 km)
+----> B787-9 Optimized ASL (km): 328.0 km (Baseline ASL (km): 2347.0 km)
+----> Airline Average Optimized ASL (km): 1070.0 km (Baseline ASL (km): 1071.0 km)
+
+-------------------- Optimization --------------------
+--> Overall Statistics:
+----> Number of Variables: 2580
+----> Number of Constraints: 1470
+----> Runtime (s): 1.54s
+----> Optimality Gap (%): 0.03%
+
+--> Key Constraints Slack Percentage:
+----> LF Slack (%): 0.83%
+----> A320NEO Utilization Slack (%): 0.01%
+----> A321NEO Utilization Slack (%): 0.01%
+----> A319CEO Utilization Slack (%): 0.0%
+----> A320CEO Utilization Slack (%): 0.1%
+----> A321CEO Utilization Slack (%): 0.0%
+----> B787-9 Utilization Slack (%): 0.1%
+
+-----------------------------------------------------
+  ```
+
+A set of representative results obtained from implementing ```FOFA_v3.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
+
+* **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
+  * These results show the effect of implementing FOFA on each aircraft's average stage length (ASL), for each airline's baseline LF.
+  * Overall, the ASL of the fuel-efficient aircraft, such as the A320NEO, increases. These fuel-efficient aircraft are deployed on longer routes, where the overall fuel burn is greater.
+  * Meanwhile, the ASL of the less fuel-efficient aircraft, such as the A320CEO, decreases.
+  * The system-wide ASL remains practically the same. This makes sense, as the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation.
+
+<p align="left">
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL_Plot.jpg" width="1000"> 
+
+**Figure:** _Optimized ASLs for each aircraft in the airline's fleet_.
+</p>
+
+* **Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for various LF**:
+  * These results display the sensitivity of the system-wide fuel consumption reduction to the ```max_LF``` parameter in ```FOFA_v3.py```.
+  * Here, the baseline 2024 System-wide Fuel Consumptions (in L): 0.99 billion (AD); 0.94 billion (G3); 1.36 billion (JJ); and 3.32 billion (RG).
   * Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between ~1% - ~4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline.
   * This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
 
@@ -128,18 +197,6 @@ A set of representative results obtained from implementing the FOFA model on Azu
 **Figure:** _System-wide fuel consumption reductions (in %) with respect to the baseline as a function of the LF_.
 </p>
   
-* **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
-  * Overall, the main trend observed is that the average stage lengths (ASLs) of the fuel-efficient aircraft, such as the A320NEO, increased, i.e., these aircraft were deployed on longer routes, where the overall fuel burn is greater.
-  * Meanwhile, the ASL of the less fuel-efficient aircraft, such as the A320CEO, decreased.
-  * The system-wide ASL remained practically the same, meaning that the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation.
-  * The reported ASLs correspond to the optimization case that takes as input the same LFs that each airline observed in reality.
-
-<p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL_Plot.jpg" width="1000"> 
-
-**Figure:** _Optimized ASLs for each aircraft in the airline's fleet_.
-</p>
-
 ([ back to top ](#back_to_top))
 
 ## Authors
