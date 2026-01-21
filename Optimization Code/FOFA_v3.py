@@ -51,11 +51,11 @@ directory = '/Users/andyeske/Desktop/Fall 2025/Optimization Methods/Project/Proc
 #      -> E4 - Abaete Aviacao
 #      Minimum LF = 83.4%
 
-Option = 4
+Option = 1
 
 # --> System-wide Sensitivity Parameters
 # Establish a maximum load factor (max_LF)
-max_LF = 83.4
+max_LF = 82.2
 
 # Enforce a maximum aircraft utilization percentage (max_uti)
 max_uti = 101
@@ -327,9 +327,13 @@ print("----> Optimized FC (L): " + str(round(new_fuel_consumption/1000)) + " mil
 print("----> FC Reduction (%): " + str(round(reduction_vec,2)) + "%")
 print("")
 print("--> Average Stage Lengths (ASL):")
-for k in range(0,20):
-    if np.isnan(avg_stage_length_vec[k]) == 0:
-        print("----> " + aircraft_names[k] + " Optimized ASL (km): " + str(int(np.round(avg_stage_length_vec[k,0]*1000))) + " km " + "(Baseline ASL (km): " + str(int(np.round(avg_stage_length_vec_baseline[k,0]*1000))) + " km)")
+for k in range(0,19):
+    if np.isnan(slack_uti_per[k]) == 0:
+        if slack_uti_per[k] == 100:
+            print("----> " + aircraft_names[k] + " Optimized ASL (km): 0 km " + "(Baseline ASL (km): " + str(int(np.round(avg_stage_length_vec_baseline[k,0]*1000))) + " km)")
+        else:
+            print("----> " + aircraft_names[k] + " Optimized ASL (km): " + str(int(np.round(avg_stage_length_vec[k,0]*1000))) + " km " + "(Baseline ASL (km): " + str(int(np.round(avg_stage_length_vec_baseline[k,0]*1000))) + " km)")
+print("----> " + aircraft_names[19] + " Optimized ASL (km): " + str(int(np.round(avg_stage_length_vec[19,0]*1000))) + " km " + "(Baseline ASL (km): " + str(int(np.round(avg_stage_length_vec_baseline[19,0]*1000))) + " km)")
 print("")
 print("-------------------- Optimization --------------------")        
 print("--> Overall Statistics:")
@@ -342,7 +346,7 @@ print("")
 print("--> Key Constraints Slack Percentage:")
 print("----> LF Slack (%): " + str(slack_LF_per) + '%')
 for k in range(0,19):
-    if np.isnan(avg_stage_length_vec[k]) == 0:
+    if np.isnan(slack_uti_per[k]) == 0:
         print("----> " + aircraft_names[k] + " Utilization Slack (%): " + str(slack_uti_per[k]) + '%')
 print("")
 print("-----------------------------------------------------")
