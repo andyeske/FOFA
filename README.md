@@ -149,6 +149,7 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 ----> A319CEO Optimized ASL (km): 375 km (Baseline ASL (km): 753 km)
 ----> A320CEO Optimized ASL (km): 601 km (Baseline ASL (km): 1012 km)
 ----> A321CEO Optimized ASL (km): 1130 km (Baseline ASL (km): 1369 km)
+----> A330-200 Optimized ASL (km): 0 km (Baseline ASL (km): 2005 km)
 ----> A330-900 Optimized ASL (km): 931 km (Baseline ASL (km): 1970 km)
 ----> ATR42-500 Optimized ASL (km): 397 km (Baseline ASL (km): 548 km)
 ----> ATR72-500 Optimized ASL (km): 415 km (Baseline ASL (km): 447 km)
@@ -178,6 +179,7 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 ----> A319CEO Utilization Slack (%): 0.04%
 ----> A320CEO Utilization Slack (%): 0.0%
 ----> A321CEO Utilization Slack (%): -0.0%
+----> A330-200 Utilization Slack (%): 100.0%
 ----> A330-900 Utilization Slack (%): 0.28%
 ----> ATR42-500 Utilization Slack (%): 0.16%
 ----> ATR72-500 Utilization Slack (%): 0.0%
