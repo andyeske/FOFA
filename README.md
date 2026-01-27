@@ -201,27 +201,19 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 A set of representative results obtained from implementing ```FOFA_v3.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
 
 * **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
-  * These results show the effect of implementing FOFA on each aircraft's average stage length (ASL), for each airline's baseline LF.
-  * Overall, the ASL of the fuel-efficient aircraft, such as the A320NEO, increases. These fuel-efficient aircraft are deployed on longer routes, where the overall fuel burn is greater.
-  * Meanwhile, the ASL of the less fuel-efficient aircraft, such as the A320CEO, decreases.
-  * The system-wide ASL remains practically the same. This makes sense, as the network itself did not change (i.e., the number of frequencies and the total distance flown did not change), acting as a sanity check to the model formulation.
 
 <p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL_Plot.jpg" width="1000"> 
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL.jpg" width="1000"> 
 
-**Figure:** _Optimized ASLs for each aircraft in the airline's fleet_.
+**Figure:** _Optimized average stage lengths (in km) compared against 2024 baseline values_.
 </p>
 
-* **Expected system-wide fuel consumption reductions (in %) with respect to the baseline, for various LF**:
-  * These results display the sensitivity of the system-wide fuel consumption reduction to the ```max_LF``` parameter in ```FOFA_v3.py```.
-  * Here, the baseline 2024 System-wide Fuel Consumptions (in L): 0.99 billion (AD); 0.94 billion (G3); 1.36 billion (JJ); and 3.32 billion (RG).
-  * Overall, while AD, G3, and JJ see system-wide fuel consumption reductions ranging between ~1% - ~4% across all LFs (with the reduction increasing with the LF), RG consistently sees a reduction that is higher than any other airline.
-  * This is due to the fact that, RG, possesing the most diverse fleet of aircraft (due to combining all airlines into one), is able to best match capacity to demand in the network.
+* **Optimized fuel intensities (in L/RPKs) for each route in the airline's network**:
 
 <p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/LF_Plot.jpg" width="1000"> 
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/Fuel%20Intensity.jpg" width="1000"> 
 
-**Figure:** _System-wide fuel consumption reductions (in %) with respect to the baseline as a function of the LF_.
+**Figure:** _Optimized fuel intensities (in L/RPK) compared against 2024 baseline values_.
 </p>
   
 ([ back to top ](#back_to_top))
