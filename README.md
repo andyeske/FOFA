@@ -1,6 +1,6 @@
 # Fuel-optimal fleet assignment in the Brazilian domestic air transportation system
 
-This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model. The model is implemented on four Brazilian airlines, although it can be applied on other global airlines, should appropriate modeling data be available.
+This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model.
 
 ## Fuel-Optimal Fleet Assignment (FOFA) Model
 
@@ -198,7 +198,7 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 -----------------------------------------------------
   ```
 
-A set of representative results obtained from implementing ```FOFA_v3.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes:
+A set of representative results obtained from implementing ```FOFA_v3.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes information such as:
 
 * **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
 
