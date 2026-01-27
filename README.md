@@ -1,6 +1,6 @@
 # Fuel-optimal fleet assignment in the Brazilian domestic air transportation system
 
-This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model. The model is implemented on the domestic Brazilian air transportation system.
+This repository provides an overview of the processed datasets and optimization code behind the fuel-optimal fleet assignment (FOFA) model. The model is implemented on four domestic Brazilian airlines, although it can be applied on other global airlines, should appropriate modeling data be available.
 
 ## Fuel-Optimal Fleet Assignment (FOFA) Model
 
