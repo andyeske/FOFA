@@ -57,8 +57,8 @@ Option = 1
 # Establish a maximum load factor (max_LF)
 max_LF = 82.2
 
-# Enforce a maximum aircraft utilization percentage (max_uti)
-max_uti = 101
+# Enforce a maximum aircraft availability percentage (max_avail)
+max_avail = 101
 
 # Fix the baseline fleet assignment on certain route segments (fixed_routes)
 fixed_routes = []
