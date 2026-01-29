@@ -229,7 +229,7 @@ constraint_3 = m.addConstr(RPKs <= max_LF*new_ASKs/100, name="constraint_3")
 num_constraints = num_constraints + 1
 
 # 4) The total flying time can't exceed the actual flying time
-constraint_4 = m.addConstr(np.transpose(flight_time)@x <= np.transpose(max_uti*total_aircraft_flying_times/100), name="constraint_4")
+constraint_4 = m.addConstr(np.transpose(flight_time)@x <= np.transpose(max_avail*total_aircraft_flying_times/100), name="constraint_4")
 num_constraints = num_constraints + non_zero_aircraft
 
 # 5) Aircraft must possess sufficient range to cover the route
