@@ -44,7 +44,7 @@ This repository provides an overview of the processed datasets and optimization 
   - ```airline_specific_yearly_fuel_consumed.csv```: This 1413-by-8 matrix contains the total (yearly) fuel consumed (in L) on each of the identified 1413 route segments, for each of the eight domestic Brazilian airlines.
 
 * **Aircraft Utilization**:
-  - ```airline_specific_yearly_aircraft_flying_times.csv```: This 19-by-8 matrix contains the total (yearly) fleet-wide flying times (in days) for each of the 19 different aircraft types and each of the eight domestic Brazilian airlines. For example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days (i.e., [3050.6 days * 24 hours] / [20 planes * 365 days] = ~6.7 hours/day).
+  - ```airline_specific_yearly_aircraft_flying_times.csv```: This 19-by-8 matrix contains the total (yearly) fleet-wide cumulative flying times (in days) for each of the 19 different aircraft types and each of the eight domestic Brazilian airlines. For example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days (i.e., [3050.6 days * 24 hours] / [20 planes * 365 days] = ~6.7 hours/day).
 
 * **Traffic Metrics**:
   - ```airline_specific_yearly_metrics.csv```: This 2-by-8 matrix contains the total (yearly) available seat-kms (ASKs) and total revenue passenger-kms (RPKs) produced by each of the eight domestic Brazilian airlines.
@@ -100,15 +100,15 @@ Option = 4
 # Establish a maximum load factor (max_LF)
 max_LF = 83.4
 
-# Enforce a maximum aircraft utilization percentage (max_uti)
-max_uti = 101
+# Enforce a maximum aircraft availability percentage (max_avail)
+max_avail = 101
 
 # Fix the baseline fleet assignment on certain route segments (fixed_routes)
 fixed_routes = []
   ```
 
-Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft utilization percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether to directly fix the baseline fleet assignment on certain route segments). In the example above:
-* ```max_LF = 83.4``` and  ```max_uti = 101``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and a maximum aircraft utilization of 101% (where 100% = baseline).
+Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft availability percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether to directly fix the baseline fleet assignment on certain route segments). In the example above:
+* ```max_LF = 83.4``` and  ```max_avail = 101``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and a maximum aircraft availability of 101% (where 100% = baseline).
 * Meanwhile, ```fixed_routes = []``` indicates that no route is fixed. While FOFA can enforce specific fleet assignments on several route segments, this situation can also make the problem unfeasible.
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
@@ -118,7 +118,7 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 ---
 <a name="results"></a>
 ### 3: Results
-Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_uti = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
+Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_avail = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
 
   ```
 ---------------- Problem Statistics -----------------
