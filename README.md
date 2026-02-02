@@ -101,14 +101,14 @@ Option = 4
 max_LF = 83.4
 
 # Enforce a maximum aircraft availability percentage (max_avail)
-max_avail = 101
+max_avail = 100
 
 # Fix the baseline fleet assignment on certain route segments (fixed_routes)
 fixed_routes = []
   ```
 
 Here, the system-wide sensitivity parameters include: the maximum load factor (i.e., establishing the maximum RPK/ASK ratio across the network); the maximum aircraft availability percentage (i.e., dictating whether the fleet can be used more or less than the baseline), and the fixed routes (i.e., enforcing whether to directly fix the baseline fleet assignment on certain route segments). In the example above:
-* ```max_LF = 83.4``` and  ```max_avail = 101``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and a maximum aircraft availability of 101% (where 100% = baseline).
+* ```max_LF = 83.4``` and  ```max_avail = 100``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and a maximum aircraft availability of 100% (where 100% = baseline).
 * Meanwhile, ```fixed_routes = []``` indicates that no route is fixed. While FOFA can enforce specific fleet assignments on several route segments, this situation can also make the problem unfeasible.
 
 Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
@@ -118,7 +118,7 @@ Depending on the problem complexity, it could be useful to edit some of the Guro
 ---
 <a name="results"></a>
 ### 3: Results
-Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_avail = 101``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
+Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_avail = 100``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
 
   ```
 ---------------- Problem Statistics -----------------
@@ -126,7 +126,7 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 ---------------------- Inputs -----------------------
 --> Airline: Combined Brazilian National Airline (RG)
 --> Maximum System-wide Load Factor (LF): 83.4%
---> Maximum Aircraft Utilization: 101%
+--> Maximum Aircraft Availability: 100%
 --> Fixed Route: []
 
 ---------------------- Outputs ----------------------
