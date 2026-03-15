@@ -285,7 +285,7 @@ gap = abs(best_bound - best_solution) / abs(best_solution)
 # Calculating the fuel reduction
 original_fuel_consumption = np.sum(baseline_fleet_assignment@aircraft_fuel*route_distance)
 new_fuel_consumption = np.sum(x_solution@aircraft_fuel*route_distance)
-reduction_vec = 100*(new_fuel_consumption - original_fuel_consumption)/original_fuel_consumption
+reduction = 100*(new_fuel_consumption - original_fuel_consumption)/original_fuel_consumption
 
 # Calculating the new average stage length
 aircraft_names = ['A320NEO','A321NEO','A319CEO','A320CEO','A321CEO','A330-200','A330-900',
@@ -332,7 +332,7 @@ print("")
 print("--> Fuel Consumption (FC) and Fuel Intensity (FI):")
 print("----> Optimized FC (L): " + str(round(new_fuel_consumption/1000)) + " million L" + " | 2024 FC (L): " + str(round(original_fuel_consumption/1000)) + " million L")
 print("----> Optimized FI (L/RPK): " + str(new_FI) + " L/RPK" + " | 2024 FI (L/RPK): " + str(original_FI) + " L/RPK")
-print("----> System-wide Reduction (%): " + str(round(reduction_vec,2)) + "%")
+print("----> System-wide Reduction (%): " + str(round(reduction,2)) + "%")
 print("")
 print("--> Average Stage Lengths (ASL):")
 for k in range(0,19):
