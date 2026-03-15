@@ -53,7 +53,7 @@ This repository provides an overview of the processed datasets and optimization 
 <a name="building"></a>
 ### 2: Optimization Code
 
-**Description:** The FOFA framework is implemented on python. Two identical versions are available in this repository, ```FOFA_v4_Gurobi.py``` and ```FOFA_v4_HiGHS.py```, which can be used depending on the optimization solver that the user is able to access (Gurobi has free academic licenses, while HiGHS is fully open-source).
+**Description:** The FOFA framework is implemented on python. Two identical versions are available in this repository, ```FOFA_v4_Gurobi.py``` and ```FOFA_v4_HiGHS.py```, which only differ in terms of their underlying optimization solver, i.e., Gurobi and HiGHS. While the former solver has free academic licenses, the latter is fully open-source (albeit slower performance).
 * The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering all eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
 * To avoid making assumptions about what a representative day of operations looks like (e.g., in terms of the average daily number of passengers transported on each route, or average daily fleet utilization), the model is run on a yearly basis, aggregating values for the entirety of 2024. This modeling decision not only has the advantage of incorporating seasonality effects, but also enables building a feasible integer solution region.
 
