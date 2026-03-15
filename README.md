@@ -23,8 +23,8 @@ This repository provides an overview of the processed datasets and optimization 
     - Fuel Consumption: aircraft- and airline-specific fuel consumption (in L/km).
     - Seat Capacity: aircraft- and airline-specific seat capacity.
     - Cumulative Flying Time (CFT): aircraft- and airline-specific cumulative flying time (in days).
-      -> _Units_: as an example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days. This roughly translates to [3050.6 days * 24 hours] / [20 planes * 365 days] = ~10.0 hours/day.
-      -> _Buffer_: To make the optimization problem feasible, CFTs are increased by 1% as an operational buffer. In the example above, 3050.6 days become 3081.1 days, or ~ 10.1 hours/day (i.e., an extra 6 minutes/day).
+      _Units_: as an example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days. This roughly translates to [3050.6 days * 24 hours] / [20 planes * 365 days] = ~10.0 hours/day.
+      _Buffer_: To make the optimization problem feasible, CFTs are increased by 1% as an operational buffer. In the example above, 3050.6 days become 3081.1 days, or ~ 10.1 hours/day (i.e., an extra 6 minutes/day).
     
     - Aircraft types include: A320NEO; A321NEO; A319CEO; A320CEO; A321CEO; A330-200; A330-900; ATR42-500; ATR72-500; ATR72-600; B737-8; B737-800; B737-500; B737-700; B737-800; B787-9; C208; E195; and E195-E2.
 
