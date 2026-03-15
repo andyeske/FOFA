@@ -123,7 +123,7 @@ aircraft_range = aircraft_performance['Range (km)'].to_numpy(); aircraft_range =
 aircraft_runways = aircraft_performance['Take-off Length (m)'].to_numpy(); aircraft_runways = aircraft_runways[0:19]
 aircraft_fuel = pd.read_excel(file_path,sheet_name='Fuel Consumption').to_numpy(); aircraft_fuel = aircraft_fuel[:,1:10]; aircraft_fuel = aircraft_fuel.astype(np.float64); aircraft_fuel = np.round(aircraft_fuel[:,Airline],2)
 aircraft_seats = pd.read_excel(file_path,sheet_name='Seat Capacity').to_numpy(); aircraft_seats = aircraft_seats[:,1:10]; aircraft_seats = aircraft_seats.astype(np.int64); aircraft_seats = np.round(aircraft_seats[:,Airline])
-total_aircraft_flying_times = pd.read_excel(file_path,sheet_name='Total Flying Time (2024)').to_numpy(); total_aircraft_flying_times = total_aircraft_flying_times[:,1:10]; total_aircraft_flying_times = total_aircraft_flying_times.astype(np.float64); total_aircraft_flying_times = np.round(total_aircraft_flying_times[:,Airline],2)
+total_aircraft_flying_times = pd.read_excel(file_path,sheet_name='Cumulative Flying Time (2024)').to_numpy(); total_aircraft_flying_times = total_aircraft_flying_times[:,1:10]; total_aircraft_flying_times = total_aircraft_flying_times.astype(np.float64); total_aircraft_flying_times = np.round(total_aircraft_flying_times[:,Airline],2)
 l_aircraft = 19
 
 # Baseline Fleet Assignment
