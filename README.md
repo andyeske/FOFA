@@ -23,13 +23,11 @@ This repository provides an overview of the processed datasets and optimization 
     - Fuel Consumption: (3) aircraft- and airline-specific fuel consumption (in L/km).
     - Seat Capacity: (4) aircraft- and airline-specific seat capacity.
     - Cumulative Flying Time (CFT): (5) aircraft- and airline-specific cumulative flying time (in days).
+      - _Units_: as an example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days. This roughly translates to [3050.6 days * 24 hours] / [20 planes * 365 days] = ~10.0 hours/day.
+      - _Buffer_: To make the optimization problem feasible, CFTs are increased by 1% as an operational buffer. In the example above, 3050.6 days become 3081.1 days, or ~ 10.1 hours/day (i.e., an extra 6 minutes/day).
     
     - Aircraft types include: A320NEO; A321NEO; A319CEO; A320CEO; A321CEO; A330-200; A330-900; ATR42-500; ATR72-500; ATR72-600; B737-8; B737-800; B737-500; B737-700; B737-800; B787-9; C208; E195; and E195-E2.
 
-    Notes on CFT: 
-    - Units: as an example, Azul's E195-E2 subfleet flew a cumulative amount of 3050.6 days. This roughly translates to [3050.6 days * 24 hours] / [20 planes * 365 days] = ~6.7 hours/day.
-    - To make the optimization problem feasible, CFTs were increased by 1% as an operational buffer. As a result, 3050.6 days became 3081.1 days, 
-  
 * **Airport Characteristics**:
   - ```Airport Codes.xlsm```: This table contains the ICAO and IATA code, as well as latitude, longitude, and primary runway length (in m) of 169 airports in Brazil (indexed 1 through 169). For example, for Rio de Janeiro Galeao, Index: 34, ICAO Code: SBGL; IATA Code: GIG; Latitute: -22.81; Longitude: -43.25; and Primary Runway Length: 4000m.
 
@@ -41,8 +39,6 @@ This repository provides an overview of the processed datasets and optimization 
   - ```route_flight_times.csv```: This 1413-by-1 matrix contains the average flight time (in days) for each of the identified 1413 route segments. For example, for route #1, the average flight time was 0.028 days, or ~40 minutes.
  
   - ```route_airport_index.csv```: This 1413-by-2 matrix contains the mapping between each of the idenfied 1413 route segments, and their respective origin and destination airports (indexed 1 through 169). For example, route #1 operated between airport #1 (ARX) and airport #33 (FOR).
- 
-  - ```route_airport_index.xlsx```: This 1413-by-2 matrix contains the mapping between each of the idenfied 1413 route segments, and their respective origin and destination airports (indexed 1 through 169). For example, route #1 operated between airport #1 (ARX) and airport #33 (FOR).
 
 * **Route Passengers**:
   -  ```airline_specific_yearly_route_passengers.csv```: This 1413-by-8 matrix contains the total (yearly) number of passengers that were transported on the identified 1413 route segments, for each of the eight domestic Brazilian airlines.
@@ -56,13 +52,15 @@ This repository provides an overview of the processed datasets and optimization 
 <a name="building"></a>
 ### 2: Optimization Code
 
-**Description:** The FOFA framework is implemented on the python scrypt ```FOFA_v3.py```. 
+**Description:** The FOFA framework is implemented on python. Two identical versions are available in this repository, ```FOFA_v4_Gurobi.py``` and ```FOFA_v4_HiGHS.py```, which can be used depending on the optimization solver that the user is able to access (Gurobi has free academic licenses, while HiGHS is fully open-source).
 * The model can be run separately for the three largest airlines in Brazil by available seat-kms (ASKs) - Azul Linhas Aereas Brasileiras, Gol Linhas Aereas, LATAM Brasil - or on aggregate considering all eight Brazilian domestic airlines, in the form of a Combined Brazilian National Airline.
 * To avoid making assumptions about what a representative day of operations looks like (e.g., in terms of the average daily number of passengers transported on each route, or average daily fleet utilization), the model is run on a yearly basis, aggregating values for the entirety of 2024. This modeling decision not only has the advantage of incorporating seasonality effects, but also enables building a feasible integer solution region.
 
-**User Action:** To run the code, simply download ```FOFA_v3.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folder. The python scrypt requires the use of a [Gurobi](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) license, which can be obtained for free for students.
+**User Action:** To run the code, download the desired ```FOFA``` version, ```FOFA_v4_Gurobi.py``` or ```FOFA_v4_HiGHS.py```, alongside the [Processed Datasets](https://github.com/andyeske/FOAA/tree/main/Processed%20Datasets) folder. 
+- If using the Gurobi version, go to the following [link](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=google&utm_medium=cpc&utm_campaign=M3+A+Search+US+Brand&gad_source=1&gad_campaignid=22845995653&gbraid=0AAAAADimQ3jj4Ag29wWuPvh0gcP5gZAed&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vGEZgRpIldNBFiA50gIS_sXEFHWZnGlusO4OP9ZU0IxiBviV5hoi9gaAhnOEALw_wcB) to obtain a free academic license.
+- If using the HiGHS version, make sure to install the open-source OR-Tools optimization library in python.
 
-```FOFA_v3.py``` requires minimal user set-up - once open in a python environment, only the 'Step 0' section requires user-editing. Here, the user can appropriately change the dataset directories, select the airline, and modifiy the system-wide sensitivity parameters:
+```FOFA``` requires minimal user set-up - once open in a python environment, as only the 'Step 0' section requires user-editing. Here, the user can appropriately change the dataset directories, select the airline, and modifiy the system-wide sensitivity parameters:
 
   ```
 # ------------------------------------------------ #
@@ -112,14 +110,12 @@ Here, the system-wide sensitivity parameters include: the maximum load factor (i
 * ```max_LF = 83.4``` and  ```max_avail = 100``` constrain the optimized fleet assignment to a network with at most a 83.4% load factor and a maximum aircraft availability of 100% (where 100% = baseline).
 * Meanwhile, ```fixed_routes = []``` indicates that no route is fixed. While FOFA can enforce specific fleet assignments on several route segments, this situation can also make the problem unfeasible.
 
-Depending on the problem complexity, it could be useful to edit some of the Gurobi solver parameters detailed in 'Step 2'.
-
 ([ back to top ](#back_to_top))
 
 ---
 <a name="results"></a>
 ### 3: Results
-Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_avail = 100``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
+Running ```FOFA``` with the parameters shown in the example above (i.e., on the Combined Brazilian National Airline, using ```max_LF = 83.4```, ```max_avail = 100``` and ```fixed_routes = []```) produces the log shown below. This log includes information about: the user-defined input parameters; airline statistics (i.e., number of routes, passengers, aircraft types, RPKs, ASKs, LF); fuel consumption; fuel intensity; average stage lengths; and optimization statistics (i.e., number of variables, constraints, runtime, and slacks).
 
   ```
 ---------------- Problem Statistics -----------------
@@ -199,7 +195,7 @@ Running ```FOFA_v3.py``` with the parameters shown in the example above (i.e., o
 -----------------------------------------------------
   ```
 
-A set of representative results obtained from implementing ```FOFA_v3.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes information such as:
+A set of representative results obtained from implementing ```FOFA_v4_HiGHS.py``` on Azul Linhas Aereas Brasileiras (AD), Gol Linhas Aereas (G3), LATAM Brasil (JJ), and the Combined Brazilian National Airline (RG) can be found in ```Results.xlsx``` under the [Processed Datasets](https://github.com/andyeske/FOFA/tree/main/Processed%20Datasets) folder. For each airline considered, this excel document includes information such as:
 
 * **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
 
