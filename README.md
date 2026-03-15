@@ -201,7 +201,7 @@ A set of representative results obtained from implementing ```FOFA_v4_HiGHS.py``
 * **Optimized average stage lengths (in km) for each aircraft in the airline's fleet**:
 
 <p align="left">
-<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL.jpg" width="1000"> 
+<img src="https://github.com/andyeske/FOFA/blob/main/Processed%20Datasets/ASL.png" width="1000"> 
 
 **Figure:** _Optimized average stage lengths (in km) compared against 2024 baseline values_.
 </p>
