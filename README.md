@@ -123,7 +123,7 @@ Running ```FOFA``` with the parameters shown in the example above (i.e., on the 
 ---------------------- Inputs -----------------------
 --> Airline: Combined Brazilian National Airline (RG)
 --> Maximum System-wide Load Factor (LF): 83.4%
---> Maximum Aircraft Availability: 100%
+--> Maximum Aircraft Utilization: 100%
 --> Fixed Route: []
 
 ---------------------- Outputs ----------------------
@@ -137,59 +137,59 @@ Running ```FOFA``` with the parameters shown in the example above (i.e., on the 
 ----> Baseline Load Factor (LF): 83.4%
 
 --> Fuel Consumption (FC) and Fuel Intensity (FI):
-----> Optimized FC (L): 3231 million L | 2024 FC (L): 3323 million L
+----> Optimized FC (L): 3227 million L | 2024 FC (L): 3323 million L
 ----> Optimized FI (L/RPK): 0.032 L/RPK | 2024 FI (L/RPK): 0.033 L/RPK
-----> System-wide Reduction (%): -2.77%
+----> System-wide Reduction (%): -2.89%
 
 --> Average Stage Lengths (ASL):
-----> A320NEO Optimized ASL (km): 1794 km | 2024 ASL (km): 1293 km
-----> A321NEO Optimized ASL (km): 2463 km | 2024 ASL (km): 1604 km
+----> A320NEO Optimized ASL (km): 1821 km | 2024 ASL (km): 1293 km
+----> A321NEO Optimized ASL (km): 2392 km | 2024 ASL (km): 1604 km
 ----> A319CEO Optimized ASL (km): 375 km | 2024 ASL (km): 753 km
-----> A320CEO Optimized ASL (km): 601 km | 2024 ASL (km): 1012 km
-----> A321CEO Optimized ASL (km): 1130 km | 2024 ASL (km): 1369 km
-----> A330-200 Optimized ASL (km): 0 km | 2024 ASL (km): 2005 km
-----> A330-900 Optimized ASL (km): 931 km | 2024 ASL (km): 1970 km
-----> ATR42-500 Optimized ASL (km): 397 km | 2024 ASL (km): 548 km
-----> ATR72-500 Optimized ASL (km): 415 km | 2024 ASL (km): 447 km
-----> ATR72-600 Optimized ASL (km): 554 km | 2024 ASL (km): 391 km
-----> B737-8 Optimized ASL (km): 2187 km | 2024 ASL (km): 1199 km
-----> B737-300 Optimized ASL (km): 825 km | 2024 ASL (km): 1587 km
-----> B737-500 Optimized ASL (km): 540 km | 2024 ASL (km): 1051 km
-----> B737-700 Optimized ASL (km): 390 km | 2024 ASL (km): 704 km
-----> B737-800 Optimized ASL (km): 1114 km | 2024 ASL (km): 1013 km
-----> B787-9 Optimized ASL (km): 836 km | 2024 ASL (km): 2347 km
-----> C208 Optimized ASL (km): 431 km | 2024 ASL (km): 328 km
-----> E195 Optimized ASL (km): 316 km | 2024 ASL (km): 550 km
-----> E195-E2 Optimized ASL (km): 823 km | 2024 ASL (km): 775 km
+----> A320CEO Optimized ASL (km): 606 km | 2024 ASL (km): 1012 km
+----> A321CEO Optimized ASL (km): 1135 km | 2024 ASL (km): 1369 km
+----> A330-200 Optimized ASL (km): 330 km | 2024 ASL (km): 2005 km
+----> A330-900 Optimized ASL (km): 861 km | 2024 ASL (km): 1970 km
+----> ATR42-500 Optimized ASL (km): 389 km | 2024 ASL (km): 548 km
+----> ATR72-500 Optimized ASL (km): 406 km | 2024 ASL (km): 447 km
+----> ATR72-600 Optimized ASL (km): 539 km | 2024 ASL (km): 391 km
+----> B737-8 Optimized ASL (km): 2189 km | 2024 ASL (km): 1199 km
+----> B737-300 Optimized ASL (km): 474 km | 2024 ASL (km): 1587 km
+----> B737-500 Optimized ASL (km): 0 km | 2024 ASL (km): 1051 km
+----> B737-700 Optimized ASL (km): 397 km | 2024 ASL (km): 704 km
+----> B737-800 Optimized ASL (km): 1126 km | 2024 ASL (km): 1013 km
+----> B787-9 Optimized ASL (km): 679 km | 2024 ASL (km): 2347 km
+----> C208 Optimized ASL (km): 466 km | 2024 ASL (km): 328 km
+----> E195 Optimized ASL (km): 292 km | 2024 ASL (km): 550 km
+----> E195-E2 Optimized ASL (km): 796 km | 2024 ASL (km): 775 km
 ----> Airline Average Optimized ASL (km): 949 km | 2024 ASL (km): 950 km
 
 -------------------- Optimization --------------------
 --> Overall Statistics:
 ----> Number of Variables: 26847
 ----> Number of Constraints: 3929
-----> Runtime (s): 139.57s
-----> Optimality Gap (%): 0.1%
+----> Runtime (s): 251.66s
+----> Optimality Gap (%): 0.0%
 
 --> Key Constraints Slack Percentage:
 ----> LF Slack (%): 0.0%
 ----> A320NEO Utilization Slack (%): 0.0%
 ----> A321NEO Utilization Slack (%): 0.0%
-----> A319CEO Utilization Slack (%): 0.04%
+----> A319CEO Utilization Slack (%): 0.0%
 ----> A320CEO Utilization Slack (%): 0.0%
-----> A321CEO Utilization Slack (%): -0.0%
-----> A330-200 Utilization Slack (%): 100.0%
-----> A330-900 Utilization Slack (%): 0.28%
-----> ATR42-500 Utilization Slack (%): 0.16%
+----> A321CEO Utilization Slack (%): 0.0%
+----> A330-200 Utilization Slack (%): 0.81%
+----> A330-900 Utilization Slack (%): 0.41%
+----> ATR42-500 Utilization Slack (%): 0.01%
 ----> ATR72-500 Utilization Slack (%): 0.0%
 ----> ATR72-600 Utilization Slack (%): 0.0%
 ----> B737-8 Utilization Slack (%): 0.0%
-----> B737-300 Utilization Slack (%): 0.2%
-----> B737-500 Utilization Slack (%): 59.54%
+----> B737-300 Utilization Slack (%): 0.19%
+----> B737-500 Utilization Slack (%): 100.0%
 ----> B737-700 Utilization Slack (%): 0.0%
 ----> B737-800 Utilization Slack (%): 0.0%
-----> B787-9 Utilization Slack (%): 0.01%
-----> C208 Utilization Slack (%): 0.02%
-----> E195 Utilization Slack (%): 15.74%
+----> B787-9 Utilization Slack (%): 0.09%
+----> C208 Utilization Slack (%): 0.0%
+----> E195 Utilization Slack (%): 16.51%
 ----> E195-E2 Utilization Slack (%): 0.0%
 
 -----------------------------------------------------
